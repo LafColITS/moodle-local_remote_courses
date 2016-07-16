@@ -14,11 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * @package    local_remote_courses
+ * @copyright  2016 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
-$plugin->version   = 2016071600;
-$plugin->requires  = 2013111800;
-$plugin->cron      = 0;
-$plugin->component = 'local_remote_courses';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v1.0.0';
+defined('MOODLE_INTERNAL') || die;
+
+if ($hassiteconfig) {
+     $settings = new admin_settingpage('local_remote_courses', get_string('pluginname', 'local_remote_courses'));
+     $ADMIN->add('localplugins', $settings);
+
+     $settings->add(new admin_setting_configtext('local_remote_courses/extracttermcode',
+        new lang_string('extracttermcode', 'local_remote_courses'),
+        new lang_string('extracttermcode_desc', 'local_remote_courses'), '', PARAM_NOTAGS));
+}

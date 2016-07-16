@@ -20,4 +20,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['extracttermcode'] = 'Term code';
+$string['extracttermcode_desc'] = 'Use this setting to define a regular expression for extracting the term code from a course idnumber. For example, <code>/[0-9]+\.([0-9]+)/</code> would extract "201610" from "999999.201610"';
 $string['pluginname'] = 'Remote Courses services';

@@ -59,11 +59,19 @@ class local_remote_courses_external extends external_api {
 
         // Process results: apply term logic and drop enrollment counts.
         $result = array();
+        $extracttermcode = get_config('local_remote_courses', 'extracttermcode');
+
         foreach ($courses as $course) {
             // Apply term logic.
-            $term = '';
-            if (!empty($course['idnumber'])) {
-                $term = substr($course['idnumber'], strrpos($course['idnumber'], '.') + 1);
+            if (empty($extracttermcode) || empty($course['idnumber'])) {
+                $term = '';
+            } else {
+                preg_match($extracttermcode, $course['idnumber'], $term);
+                if (!empty($term) && count($term) >= 2) {
+                    $term = $term[1];
+                } else {
+                    $term = '';
+                }
             }
 
             $result[] = array(

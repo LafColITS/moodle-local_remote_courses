@@ -44,16 +44,20 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
         $this->assignUserCapability('moodle/course:viewparticipants', $contextid, $r1);
         $this->assignUserCapability('moodle/course:view', $contextid, $r1);
         $this->setUser($user);
+        set_config('extracttermcode', '/[0-9]+.([0-9]+)/', 'local_remote_courses');
 
         $course1 = new stdClass();
         $course1->fullname  = 'Test Course 1';
         $course1->shortname = 'CF101';
+        $course1->idnumber  = '123456.201610';
         $course2 = new stdClass();
         $course2->fullname  = 'Test Course 2';
         $course2->shortname = 'CF102';
+        $course2->idnumber  = '123456.201620';
         $course3 = new stdClass();
         $course3->fullname  = 'Test Course 3';
         $course3->shortname = 'CF103';
+        $course3->idnumber  = '123456.201510';
         $course3->visible   = 0;
 
         $c1 = $this->getDataGenerator()->create_course($course1);
@@ -70,5 +74,7 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
 
         $results = local_remote_courses_external::get_courses_by_username($student->username);
         $this->assertEquals(2, count($results));
+        $this->assertEquals('201620', $results[0]['term']);
+        $this->assertEquals('201610', $results[1]['term']);
     }
 }
