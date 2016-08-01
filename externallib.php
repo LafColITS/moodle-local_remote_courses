@@ -84,9 +84,7 @@ class local_remote_courses_external extends external_api {
         }
 
         // Sort courses by recent access.
-        $courselist = array_keys($DB->get_records_sql('SELECT course, MAX(time) as recent FROM {log}
-            WHERE userid = ? AND course != 1 GROUP BY course
-            ORDER BY recent DESC', array($userid)));
+        $courselist = self::get_recent_courses($userid);
         $unsorted = $result;
         $sorted = array();
         foreach ($result as $cid => $course) {
@@ -99,8 +97,34 @@ class local_remote_courses_external extends external_api {
 
         ksort($sorted);
         $result = array_merge($sorted, $unsorted);
-
         return $result;
+    }
+
+    protected static function get_recent_courses($userid) {
+        $manager = get_log_manager();
+        $selectreaders = $manager->get_readers();
+        if ($selectreaders) {
+            $courses = array();
+            $reader = reset($selectreaders);
+
+            // Selection criteria.
+            $joins = array(
+                "userid = :userid",
+                "courseid != 1",
+                "eventname = :eventname"
+            );
+            $selector = implode(' AND ', $joins);
+            $events = $reader->get_events_select($selector, array('userid' => $userid, 'eventname' => '\core\event\course_viewed'),
+                    'timecreated DESC', 0, 0);
+            foreach ($events as $event) {
+                $courses[] = $event->get_data()['courseid'];
+            }
+            return $courses;
+
+        } else {
+            // No available log reader found.
+            return array();
+        }
     }
 
     public static function get_courses_by_username_returns() {
