@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Unit tests for local_remote_courses.
+ *
  * @package    local_remote_courses
  * @copyright  2016 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,6 +29,13 @@ global $CFG;
 require_once($CFG->dirroot . '/local/remote_courses/externallib.php');
 require_once($CFG->dirroot . '/webservice/tests/helpers.php');
 
+/**
+ * Primary test cases for local_remote_courses.
+ *
+ * @package    local_remote_courses
+ * @copyright  2016 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class local_remote_courses_testcase extends externallib_advanced_testcase {
     public function test_get_courses() {
         global $DB;

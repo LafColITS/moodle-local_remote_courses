@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * External functions for returning course information.
+ *
  * @package    local_remote_courses
  * @copyright  2015 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,6 +24,13 @@
 
 require_once("$CFG->dirroot/enrol/externallib.php");
 
+/**
+ * Returns a user's courses based on username.
+ *
+ * @package   local_remote_courses
+ * @copyright 2015 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class local_remote_courses_external extends external_api {
     /**
      * Returns description of method parameters
@@ -37,7 +46,8 @@ class local_remote_courses_external extends external_api {
     }
 
     /**
-     * Get a user's enrolled courses
+     * Get a user's enrolled courses.
+     *
      * This is a wrapper of core_enrol_get_users_courses(). It accepts
      * the username instead of the id and does some optional filtering
      * logic on the idnumber.
@@ -100,6 +110,14 @@ class local_remote_courses_external extends external_api {
         return $result;
     }
 
+    /**
+     * Retrieves the courses viewed by the user.
+     *
+     * This function queries the active logstore for access information.
+     *
+     * @param int $userid
+     * @return array
+     */
     protected static function get_recent_courses($userid) {
         $manager = get_log_manager();
         $selectreaders = $manager->get_readers();
@@ -127,6 +145,11 @@ class local_remote_courses_external extends external_api {
         }
     }
 
+    /**
+     * Returns description of get_courses_by_username_returns() result value.
+     *
+     * @return \external_description
+     */
     public static function get_courses_by_username_returns() {
         return new external_multiple_structure(
             new external_single_structure(
