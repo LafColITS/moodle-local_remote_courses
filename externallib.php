@@ -72,10 +72,10 @@ class local_remote_courses_external extends external_api {
         $extracttermcode = get_config('local_remote_courses', 'extracttermcode');
 
         foreach ($courses as $course) {
-	    $coursecontext = context_course::instance($course['id']);
-	    $role_objects = get_user_roles($coursecontext,$userid,false);
-	    foreach ($role_objects as $role) {
-	      $roles[] = $role->shortname;
+            $coursecontext = context_course::instance($course['id']);
+            $role_objects = get_user_roles($coursecontext,$userid,false);
+            foreach ($role_objects as $role) {
+                $roles[] = $role->shortname;
             }
             // Apply term logic.
             if (empty($extracttermcode) || empty($course['idnumber'])) {
@@ -95,7 +95,7 @@ class local_remote_courses_external extends external_api {
                 'fullname' => $course['fullname'],
                 'term' => $term,
                 'visible' => $course['visible'],
-		'roles' => $roles,
+                'roles' => $roles,
             );
         }
 
@@ -165,7 +165,7 @@ class local_remote_courses_external extends external_api {
                     'fullname'  => new external_value(PARAM_RAW, 'long name of course'),
                     'term'  => new external_value(PARAM_RAW, 'the course term, if applicable'),
                     'visible' => new external_value(PARAM_INT, '1 means visible, 0 means hidden course'),
-		    'roles' =>  new external_multiple_structure(new external_value(PARAM_RAW, 'role shortname'),'user roles in the course',VALUE_OPTIONAL),
+                    'roles' =>  new external_multiple_structure(new external_value(PARAM_RAW, 'role shortname'),'user roles in the course',VALUE_OPTIONAL),
                 )
             )
         );
