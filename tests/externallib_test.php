@@ -91,6 +91,8 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
         $this->assertEquals(2, count($results));
         $this->assertEquals('201620', $results[0]['term']);
         $this->assertEquals('201610', $results[1]['term']);
+        $this->assertEquals('student', $results[0]['roles'][0]);
+        $this->assertEquals(1, count($results[1]['roles']));
 
         // Test sorting; user will "visit" course 1.
         $context = context_course::instance($c1->id);
