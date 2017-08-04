@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 require_once("$CFG->dirroot/enrol/externallib.php");
 
 /**
@@ -56,7 +58,7 @@ class local_remote_courses_external extends external_api {
      * @return array
      */
     public static function get_courses_by_username($username) {
-        global $DB, $USER;
+        global $DB;
 
         // Validate parameters passed from webservice.
         $params = self::validate_parameters(self::get_courses_by_username_parameters(), array('username' => $username));
@@ -165,9 +167,9 @@ class local_remote_courses_external extends external_api {
                     'id'        => new external_value(PARAM_INT, 'id of course'),
                     'shortname' => new external_value(PARAM_RAW, 'short name of course'),
                     'fullname'  => new external_value(PARAM_RAW, 'long name of course'),
-                    'term'  => new external_value(PARAM_RAW, 'the course term, if applicable'),
-                    'visible' => new external_value(PARAM_INT, '1 means visible, 0 means hidden course'),
-                    'roles' => new external_multiple_structure(
+                    'term'      => new external_value(PARAM_RAW, 'the course term, if applicable'),
+                    'visible'   => new external_value(PARAM_INT, '1 means visible, 0 means hidden course'),
+                    'roles'     => new external_multiple_structure(
                         new external_value(PARAM_RAW, 'role shortname'), 'user roles in the course', VALUE_OPTIONAL),
                 )
             )

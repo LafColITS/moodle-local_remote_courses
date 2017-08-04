@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 $functions = array(
     'local_remote_courses_get_courses_by_username' => array(
         'classname'    => 'local_remote_courses_external',
