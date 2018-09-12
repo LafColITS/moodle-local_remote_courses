@@ -15,14 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language strings for local_remote_courses.
  *
- * @package    local_remote_courses
- * @copyright  2015 Lafayette College ITS
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_remote_courses
+ * @copyright 2018 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['extracttermcode'] = 'Term code';
-$string['extracttermcode_desc'] = 'Use this setting to define a regular expression for extracting the term code from a course idnumber. For example, <code>/[0-9]+\.([0-9]+)/</code> would extract "201610" from "999999.201610"';
-$string['pluginname'] = 'Remote course web service';
-$string['privacy:metadata'] = 'The web service only returns data stored in other locations.';
+namespace local_remote_courses\privacy;
+
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Privacy subsystem for local_remote_courses implementing null_provider.
+ *
+ * @copyright  2018 Lafayette College ITS
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    // This trait must be included.
+    use \core_privacy\local\legacy_polyfill;
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function _get_reason() {
+        return 'privacy:metadata';
+    }
+}
