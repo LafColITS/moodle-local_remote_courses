@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Privacy implementation for local_remote_courses.
  *
  * @package   local_remote_courses
  * @copyright 2018 Lafayette College ITS
