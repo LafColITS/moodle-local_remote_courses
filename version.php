@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2018091200;
-$plugin->requires  = 2018051700;
+$plugin->requires  = 2018120300;
 $plugin->component = 'local_remote_courses';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = 'v3.3.0';

@@ -23,7 +23,7 @@ There is a setting for extracting a term code from the course `idnumber` using a
 
 Requirements
 ------------
-- Moodle 3.3 (build 2017051500 or later)
+- Moodle 3.6 (build 2018120300 or later)
 
 Installation
 ------------
