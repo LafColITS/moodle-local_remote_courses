@@ -15,7 +15,7 @@ cache:
 services:
  - mysql
 
- matrix:
+matrix:
   include:
     - php: 7.0
       env: DB=pgsql MOODLE_BRANCH=MOODLE_36_STABLE NODE_VERSION=8.9.0
