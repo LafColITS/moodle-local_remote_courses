@@ -1,7 +1,7 @@
 Remote course web service
 =========================
 
-[![Build Status](https://travis-ci.org/LafColITS/moodle-local_remote_courses.svg?branch=master)](https://travis-ci.org/LafColITS/moodle-local_remote_courses)
+![Moodle Plugin CI](https://github.com/LafColITS/moodle-local_remote_courses/workflows/Moodle%20Plugin%20CI/badge.svg)
 
 This local module provides a web service which returns a given user's courses based on username. It returns the courses sorted by access time, with the most recently-accessed course at the top. You may also configure it to return term information. The standard use case is to create deep links to courses in one Moodle installation in another Moodle installation.
 
