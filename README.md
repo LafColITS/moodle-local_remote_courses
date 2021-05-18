@@ -18,6 +18,7 @@ See [Using web services](https://docs.moodle.org/29/en/Using_web_services) in th
 - `moodle/course:view`
 - `moodle/course:viewhiddencourses`
 - `moodle/course:viewparticipants`
+- `moodle/user:viewdetails`
 
 There is a setting for extracting a term code from the course `idnumber` using a regular expression. For example, the regular expression `/[0-9]+\.([0-9]+)/` would extract "201610" from "999999.201610".
 
