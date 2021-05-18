@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [Bugfix] Update required capabilities for [MSA-21-0010](https://moodle.org/mod/forum/discuss.php?d=419654)
 - Change default branch to "main"
 - Update CI tool to version 3
 - Dropped support for Moodle 3.6-3.8

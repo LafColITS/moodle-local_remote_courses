@@ -57,6 +57,7 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
         $this->assignUserCapability('moodle/course:viewhiddencourses', $contextid, $r1);
         $this->assignUserCapability('moodle/course:viewparticipants', $contextid, $r1);
         $this->assignUserCapability('moodle/course:view', $contextid, $r1);
+        $this->assignUserCapability('moodle/user:viewdetails', $contextid, $r1);
         $this->setUser($user);
         set_config('extracttermcode', '/[0-9]+.([0-9]+)/', 'local_remote_courses');
 
