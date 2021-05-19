@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.9.0 (May 19, 2021)
 
 - [Bugfix] Update required capabilities for [MSA-21-0010](https://moodle.org/mod/forum/discuss.php?d=419654)
 - Change default branch to "main"
