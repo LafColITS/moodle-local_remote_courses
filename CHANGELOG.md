@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Dropped support for Moodle 3.9-4.1
+- [Bugfix] Update class names for [MDL-76583](https://tracker.moodle.org/browse/MDL-76583)
+
 ## 3.9.0 (May 19, 2021)
 
 - [Bugfix] Update required capabilities for [MSA-21-0010](https://moodle.org/mod/forum/discuss.php?d=419654)
