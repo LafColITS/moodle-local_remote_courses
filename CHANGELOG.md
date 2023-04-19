@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.2.0 (April 19, 2023)
 
 - Dropped support for Moodle 3.9-4.1
 - [Bugfix] Update class names for [MDL-76583](https://tracker.moodle.org/browse/MDL-76583)
