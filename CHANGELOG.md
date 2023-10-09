@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.1 (October 9, 2023)
+
+- Verified against Moodle 4.3
+
 ## 4.2.0 (April 19, 2023)
 
 - Dropped support for Moodle 3.9-4.1
