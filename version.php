@@ -29,4 +29,4 @@ $plugin->requires  = 2023012000.00;
 $plugin->component = 'local_remote_courses';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = 'v4.2.0';
-$plugin->supported = [402, 402];
+$plugin->supported = [402, 403];
