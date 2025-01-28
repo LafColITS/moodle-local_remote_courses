@@ -22,8 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_remote_courses;
+
 defined('MOODLE_INTERNAL') || die;
 
+use context_course;
+use core_enrol_external;
 use core_external\external_api;
 use core_external\external_function_parameters;
 use core_external\external_multiple_structure;
@@ -39,7 +43,7 @@ require_once("$CFG->dirroot/enrol/externallib.php");
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_remote_courses_external extends external_api {
+class external extends external_api {
     /**
      * Returns description of method parameters
      *

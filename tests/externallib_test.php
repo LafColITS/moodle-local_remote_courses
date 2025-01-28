@@ -22,12 +22,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_remote_courses;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 
 require_once($CFG->dirroot . '/local/remote_courses/externallib.php');
 require_once($CFG->dirroot . '/webservice/tests/helpers.php');
+
+use \stdClass;
+use context_course;
+use context_system;
 
 /**
  * Primary test cases for local_remote_courses.
@@ -36,7 +42,7 @@ require_once($CFG->dirroot . '/webservice/tests/helpers.php');
  * @copyright  2016 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_remote_courses_testcase extends externallib_advanced_testcase {
+class externallib_test extends \externallib_advanced_testcase {
     public function test_get_courses() {
         global $DB;
 
@@ -88,7 +94,7 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
             $c2->id,
             $studentrole->id);
 
-        $results = local_remote_courses_external::get_courses_by_username($student->username);
+        $results = external::get_courses_by_username($student->username);
         $this->assertEquals(2, count($results));
         $this->assertEquals('201620', $results[0]['term']);
         $this->assertEquals('201610', $results[1]['term']);
@@ -103,7 +109,7 @@ class local_remote_courses_testcase extends externallib_advanced_testcase {
         $event = \core\event\course_viewed::create($eventparams);
         $event->trigger();
 
-        $results = local_remote_courses_external::get_courses_by_username($student->username);
+        $results = external::get_courses_by_username($student->username);
         $this->assertEquals(2, count($results));
         $this->assertEquals('Test Course 1', $results[0]['fullname']);
         $this->assertEquals('Test Course 2', $results[1]['fullname']);
