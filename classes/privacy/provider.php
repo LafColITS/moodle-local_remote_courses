@@ -24,8 +24,6 @@
 
 namespace local_remote_courses\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy subsystem for local_remote_courses implementing null_provider.
  *

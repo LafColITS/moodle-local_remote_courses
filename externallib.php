@@ -149,7 +149,7 @@ class external extends external_api {
             $joins = array(
                 "userid = :userid",
                 "courseid != 1",
-                "eventname = :eventname"
+                "eventname = :eventname",
             );
             $selector = implode(' AND ', $joins);
             $events = $reader->get_events_select($selector, array('userid' => $userid, 'eventname' => '\core\event\course_viewed'),

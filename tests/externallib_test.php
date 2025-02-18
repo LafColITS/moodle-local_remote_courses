@@ -31,7 +31,7 @@ global $CFG;
 require_once($CFG->dirroot . '/local/remote_courses/externallib.php');
 require_once($CFG->dirroot . '/webservice/tests/helpers.php');
 
-use \stdClass;
+use stdClass;
 use context_course;
 use context_system;
 
