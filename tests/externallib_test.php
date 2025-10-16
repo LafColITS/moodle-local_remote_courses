@@ -86,13 +86,17 @@ class externallib_test extends \externallib_advanced_testcase {
         $c2 = $this->getDataGenerator()->create_course($course2);
 
         $student = $this->getDataGenerator()->create_user();
-        $studentrole = $DB->get_record('role', array('shortname' => 'student'));
-        $this->getDataGenerator()->enrol_user($student->id,
+        $studentrole = $DB->get_record('role', ['shortname' => 'student']);
+        $this->getDataGenerator()->enrol_user(
+            $student->id,
             $c1->id,
-            $studentrole->id);
-        $this->getDataGenerator()->enrol_user($student->id,
+            $studentrole->id
+        );
+        $this->getDataGenerator()->enrol_user(
+            $student->id,
             $c2->id,
-            $studentrole->id);
+            $studentrole->id
+        );
 
         $results = external::get_courses_by_username($student->username);
         $this->assertEquals(2, count($results));
@@ -103,7 +107,7 @@ class externallib_test extends \externallib_advanced_testcase {
 
         // Test sorting; user will "visit" course 1.
         $context = context_course::instance($c1->id);
-        $eventparams = array();
+        $eventparams = [];
         $eventparams['context'] = $context;
         $eventparams['userid'] = $student->id;
         $event = \core\event\course_viewed::create($eventparams);

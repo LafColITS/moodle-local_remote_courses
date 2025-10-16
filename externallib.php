@@ -51,9 +51,9 @@ class external extends external_api {
      */
     public static function get_courses_by_username_parameters() {
         return new external_function_parameters(
-                array(
+            [
                     'username' => new external_value(PARAM_USERNAME, 'username'),
-                )
+                ]
         );
     }
 
@@ -71,20 +71,20 @@ class external extends external_api {
         global $DB;
 
         // Validate parameters passed from webservice.
-        $params = self::validate_parameters(self::get_courses_by_username_parameters(), array('username' => $username));
+        $params = self::validate_parameters(self::get_courses_by_username_parameters(), ['username' => $username]);
 
         // Extract the userid from the username.
-        $userid = $DB->get_field('user', 'id', array('username' => $username));
+        $userid = $DB->get_field('user', 'id', ['username' => $username]);
 
         // Get the courses.
         $courses = core_enrol_external::get_users_courses($userid);
 
         // Process results: apply term logic and drop enrollment counts.
-        $result = array();
+        $result = [];
         $extracttermcode = get_config('local_remote_courses', 'extracttermcode');
 
         foreach ($courses as $course) {
-            $roles = array(); // Reset roles for each course.
+            $roles = []; // Reset roles for each course.
 
             $coursecontext = context_course::instance($course['id']);
             $userroles = get_user_roles($coursecontext, $userid, false);
@@ -103,20 +103,20 @@ class external extends external_api {
                 }
             }
 
-            $result[] = array(
+            $result[] = [
                 'id' => $course['id'],
                 'shortname' => $course['shortname'],
                 'fullname' => $course['fullname'],
                 'term' => $term,
                 'visible' => $course['visible'],
                 'roles' => $roles,
-            );
+            ];
         }
 
         // Sort courses by recent access.
         $courselist = self::get_recent_courses($userid);
         $unsorted = $result;
-        $sorted = array();
+        $sorted = [];
         foreach ($result as $cid => $course) {
             $sort = array_search($course['id'], $courselist);
             if ($sort !== false) {
@@ -142,26 +142,30 @@ class external extends external_api {
         $manager = get_log_manager();
         $selectreaders = $manager->get_readers();
         if ($selectreaders) {
-            $courses = array();
+            $courses = [];
             $reader = reset($selectreaders);
 
             // Selection criteria.
-            $joins = array(
+            $joins = [
                 "userid = :userid",
                 "courseid != 1",
                 "eventname = :eventname",
-            );
+            ];
             $selector = implode(' AND ', $joins);
-            $events = $reader->get_events_select($selector, array('userid' => $userid, 'eventname' => '\core\event\course_viewed'),
-                    'timecreated DESC', 0, 0);
+            $events = $reader->get_events_select(
+                $selector,
+                ['userid' => $userid, 'eventname' => '\core\event\course_viewed'],
+                'timecreated DESC',
+                0,
+                0
+            );
             foreach ($events as $event) {
                 $courses[] = $event->get_data()['courseid'];
             }
             return $courses;
-
         } else {
             // No available log reader found.
-            return array();
+            return [];
         }
     }
 
@@ -173,15 +177,18 @@ class external extends external_api {
     public static function get_courses_by_username_returns() {
         return new external_multiple_structure(
             new external_single_structure(
-                array(
+                [
                     'id'        => new external_value(PARAM_INT, 'id of course'),
                     'shortname' => new external_value(PARAM_RAW, 'short name of course'),
                     'fullname'  => new external_value(PARAM_RAW, 'long name of course'),
                     'term'      => new external_value(PARAM_RAW, 'the course term, if applicable'),
                     'visible'   => new external_value(PARAM_INT, '1 means visible, 0 means hidden course'),
                     'roles'     => new external_multiple_structure(
-                        new external_value(PARAM_RAW, 'role shortname'), 'user roles in the course', VALUE_OPTIONAL),
-                )
+                        new external_value(PARAM_RAW, 'role shortname'),
+                        'user roles in the course',
+                        VALUE_OPTIONAL
+                    ),
+                ]
             )
         );
     }

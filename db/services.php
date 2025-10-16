@@ -24,13 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$functions = array(
-    'local_remote_courses_get_courses_by_username' => array(
+$functions = [
+    'local_remote_courses_get_courses_by_username' => [
         'classname'    => 'local_remote_courses_external',
         'methodname'   => 'get_courses_by_username',
         'classpath'    => 'local/remote_courses/externallib.php',
         'description'  => 'Get user\'s courses by username.',
         'type'         => 'read',
         'capabilities' => 'moodle/course:view, moodle/course:viewparticipants',
-    ),
-);
+    ],
+];
