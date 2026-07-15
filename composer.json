@@ -1,0 +1,12 @@
+{
+    "name": "lafayettecollege/moodle-local_remote_courses",
+    "description": "This local module provides a web service which returns a given user's courses based on username. It returns the courses sorted by access time, with the most recently-accessed course at the top.",
+    "type": "moodle-local",
+    "require": {
+        "composer/installers": "*"
+    },
+    "license": "GPL-3.0-or-later",
+    "extra": {
+        "installer-name": "remote_courses"
+    }
+}

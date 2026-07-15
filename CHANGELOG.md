@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.2 (July 15, 2026)
+
+- Add composer support
+
 ## 4.2.1 (October 9, 2023)
 
 - Verified against Moodle 4.3
