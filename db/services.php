@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 
 $functions = [
     'local_remote_courses_get_courses_by_username' => [
-        'classname'    => 'local_remote_courses_external',
+        'classname'    => 'local_remote_courses\external',
         'methodname'   => 'get_courses_by_username',
         'classpath'    => 'local/remote_courses/externallib.php',
         'description'  => 'Get user\'s courses by username.',
