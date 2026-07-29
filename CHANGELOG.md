@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.0 (July 29, 2026)
+
+- [Bugfix] Classpath in service definition
+- Drop support for Moodle 4.4-4.5
+
 ## 4.2.2 (July 15, 2026)
 
 - Add composer support
