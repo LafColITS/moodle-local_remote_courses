@@ -39,11 +39,12 @@ use context_system;
  * Primary test cases for local_remote_courses.
  *
  * @package    local_remote_courses
+ * @covers     \local_remote_courses\external\get_courses_by_usernam
  * @copyright  2016 Lafayette College ITS
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class externallib_test extends \externallib_advanced_testcase {
-    public function test_get_courses() {
+final class externallib_test extends \externallib_advanced_testcase {
+    public function test_get_courses(): void {
         global $DB;
 
         $this->resetAfterTest(true);
